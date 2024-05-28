@@ -20,12 +20,4 @@
     <PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Panel\Manage\" />
-    <Folder Include="Panel\Account\" />
-    <Folder Include="Panel\Home\" />
-    <Folder Include="Panel\Order\" />
-    <Folder Include="Panel\Recommend\" />
-  </ItemGroup>
-
 </Project>
