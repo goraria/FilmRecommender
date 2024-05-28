@@ -21,8 +21,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Panel\" />
-    <Folder Include="Process\" />
+    <Folder Include="Panel\Manage\" />
+    <Folder Include="Panel\Account\" />
+    <Folder Include="Panel\Home\" />
+    <Folder Include="Panel\Order\" />
+    <Folder Include="Panel\Recommend\" />
   </ItemGroup>
 
 </Project>
