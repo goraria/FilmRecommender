@@ -20,4 +20,9 @@
     <PackageReference Include="Microsoft.ML.FastTree" Version="3.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Panel\" />
+    <Folder Include="Process\" />
+  </ItemGroup>
+
 </Project>
