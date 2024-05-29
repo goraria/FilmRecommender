@@ -9,6 +9,12 @@
       Title="Recommend">
 
     <Grid>
-        
+        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFAA00FF">
+            <Grid Background="#FFAA00FF">
+                <local:InputData HorizontalAlignment="Left" Width="200"/>
+                <local:FilmInfo/>
+                <local:FilmImage/>
+            </Grid>
+        </Border>
     </Grid>
 </Page>

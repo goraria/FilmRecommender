@@ -4,9 +4,23 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:FilmRecommender.Panel"
+             xmlns:localAccount="clr-namespace:FilmRecommender.Panel.Account"
+             xmlns:localHome="clr-namespace:FilmRecommender.Panel.Home"
+             xmlns:localManage="clr-namespace:FilmRecommender.Panel.Manage"
+             xmlns:localOrder="clr-namespace:FilmRecommender.Panel.Order"
+             xmlns:localRecommend="clr-namespace:FilmRecommender.Panel.Recommend"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-            
+        <!--<Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FF88EEBB">
+            <Grid Background="#FF88EEBB">
+                --><!--<localAccount:Account HorizontalAlignment="Center" VerticalAlignment="Center"/>--><!--
+                <localHome:Home HorizontalAlignment="Center" VerticalAlignment="Center"/>
+                --><!--<localManage:Manage HorizontalAlignment="Center" VerticalAlignment="Center"/>-->
+                <!--<localOrder:Order HorizontalAlignment="Center" VerticalAlignment="Center"/>--><!--
+                <localRecommend:Recommend HorizontalAlignment="Center" VerticalAlignment="Center"/>
+            </Grid>
+        </Border>-->
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" />
     </Grid>
 </UserControl>

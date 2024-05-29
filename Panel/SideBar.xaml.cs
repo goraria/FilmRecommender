@@ -21,5 +21,31 @@ namespace FilmRecommender.Panel {
         public SideBar() {
             InitializeComponent();
         }
+
+        public event Action NavigateToHomeRequested;
+        public event Action NavigateToRecommendRequested;
+        public event Action NavigateToOrderRequested;
+        public event Action NavigateToManageRequested;
+        public event Action NavigateToAccountRequested;
+
+        private void NavigateToHome(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToHomeRequested?.Invoke();
+        }
+
+        private void NavigateToRecommend(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToRecommendRequested?.Invoke();
+        }
+
+        private void NavigateToOrder(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToOrderRequested?.Invoke();
+        }
+
+        private void NavigateToManage(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToManageRequested?.Invoke();
+        }
+
+        private void NavigateToAccount(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToAccountRequested?.Invoke();
+        }
     }
 }
