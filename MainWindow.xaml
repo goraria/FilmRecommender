@@ -6,7 +6,8 @@
         xmlns:local="clr-namespace:FilmRecommender"
         xmlns:localPanel="clr-namespace:FilmRecommender.Panel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="720" Width="1280">
+        Title="MainWindow" Height="720" Width="1280"
+        WindowStartupLocation="CenterScreen">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>

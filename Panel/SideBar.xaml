@@ -10,9 +10,9 @@
         <StackPanel>
             <Button Content="Home" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToHome" />
             <Button Content="Recommend" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToRecommend" />
-            <Button Content="Order" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToOrder" />
-            <Button Content="Manage" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToManage" />
-            <Button Content="Account" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToAccount" />
+            <!--<Button Content="Order" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToOrder" />-->
+            <!--<Button Content="Manage" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToManage" />-->
+            <!--<Button Content="Account" Margin="5 5 5 0" Height="50" FontFamily="Arial" FontSize="20" FontWeight="Bold" Click="NavigateToAccount" />-->
         </StackPanel>
     </Grid>
 </UserControl>

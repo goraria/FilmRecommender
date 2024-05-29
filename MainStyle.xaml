@@ -28,12 +28,13 @@
             <Setter.Value>
                 <ControlTemplate TargetType="Button">
                     <Border Background="{TemplateBinding Background}"
-                            BorderBrush="{TemplateBinding BorderBrush}"
+                            BorderBrush="{TemplateBinding Background}"
                             BorderThickness="{TemplateBinding BorderThickness}"
                             CornerRadius="5">
                         <ContentPresenter HorizontalAlignment="Center"
                                           VerticalAlignment="Center"/>
                     </Border>
+                    <!--BorderBrush="{TemplateBinding BorderBrush}" -->
                 </ControlTemplate>
             </Setter.Value>
         </Setter>

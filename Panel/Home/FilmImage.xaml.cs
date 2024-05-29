@@ -12,14 +12,16 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using FilmRecommender.Panel.Home;
 
-namespace FilmRecommender.Panel.Home {
+namespace FilmRecommender.Panel.Home
+{
     /// <summary>
-    /// Interaction logic for Home.xaml
+    /// Interaction logic for FilmImage.xaml
     /// </summary>
-    public partial class Home : Page {
-        public Home() {
+    public partial class FilmImage : UserControl
+    {
+        public FilmImage()
+        {
             InitializeComponent();
         }
     }

@@ -9,8 +9,16 @@
       Title="Recommend">
 
     <Grid>
-        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFAA00FF">
-            <Grid Background="#FFAA00FF">
+        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFEEDDFF">
+            <Grid Background="#FFEEDDFF">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
                 <local:InputData HorizontalAlignment="Left" Width="200"/>
                 <local:FilmInfo/>
                 <local:FilmImage/>

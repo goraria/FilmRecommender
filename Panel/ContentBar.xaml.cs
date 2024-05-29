@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FilmRecommender.Panel;
 using FilmRecommender.Panel.Account;
 using FilmRecommender.Panel.Home;
 using FilmRecommender.Panel.Manage;
@@ -25,26 +26,26 @@ namespace FilmRecommender.Panel {
     public partial class ContentBar : UserControl {
         public ContentBar() {
             InitializeComponent();
-            MainFrame.Navigate(new FilmRecommender.Panel.Home.Home());
-        }
-
-        private void NavigateToHome() {
-            MainFrame.Navigate(new FilmRecommender.Panel.Home.Home());
-        }
-
-        private void NavigateToRecommend() {
             MainFrame.Navigate(new FilmRecommender.Panel.Recommend.Recommend());
         }
 
-        private void NavigateToOrder() {
+        public void NavigateToHome() { // private
+            MainFrame.Navigate(new FilmRecommender.Panel.Home.Home());
+        }
+
+        public void NavigateToRecommend() {
+            MainFrame.Navigate(new FilmRecommender.Panel.Recommend.Recommend());
+        }
+
+        public void NavigateToOrder() {
             MainFrame.Navigate(new FilmRecommender.Panel.Order.Order());
         }
 
-        private void NavigateToManage() {
+        public void NavigateToManage() {
             MainFrame.Navigate(new FilmRecommender.Panel.Manage.Manage());
         }
 
-        private void NavigateToAccount() {
+        public void NavigateToAccount() {
             MainFrame.Navigate(new FilmRecommender.Panel.Account.Account());
         }
     }

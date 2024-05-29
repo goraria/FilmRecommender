@@ -16,6 +16,14 @@ namespace FilmRecommender {
     public partial class MainWindow : Window {
         public MainWindow() {
             InitializeComponent();
+            this.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+
+            // Đăng ký sự kiện điều hướng từ sidebar
+            sidebar.NavigateToHomeRequested += () => contentbar.NavigateToHome();
+            sidebar.NavigateToRecommendRequested += () => contentbar.NavigateToRecommend();
+            sidebar.NavigateToOrderRequested += () => contentbar.NavigateToOrder();
+            sidebar.NavigateToManageRequested += () => contentbar.NavigateToManage();
+            sidebar.NavigateToAccountRequested += () => contentbar.NavigateToAccount();
         }
     }
 }
