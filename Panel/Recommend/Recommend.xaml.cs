@@ -156,8 +156,8 @@ namespace FilmRecommender.Panel.Recommend
                 //    phimQuery = phimQuery.Where(p => p.mac != "PG");
                 //}
             } else {
-                if (tuoi < 18 && tuoi > 15) {
-                    phimQuery = phimQuery.Where(p => p.mac != "PG");
+                if (tuoi < 15) {
+                    phimQuery = phimQuery.Where(p => p.mac != "R" && (p.theloai.Contains("Hài hước") || p.theloai.Contains("Hoạt hình")));
                 }
             }
 
@@ -200,28 +200,28 @@ namespace FilmRecommender.Panel.Recommend
                 .ToList();
 
             // Kiểm tra và bổ sung phim nếu không đủ 3 phim
-            if (ketQua.Count < 3) {
-                var additionalMovies = _context.Phims
-                    .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim))
-                    .OrderByDescending(p => p.ngayramat)
-                    .ThenByDescending(p => p.sove)
-                    .Take(5 - ketQua.Count)
-                    .Select(p => new MovieData {
-                        Id = p.id_phim,
-                        Name = p.tenphim,
-                        Genre = p.theloai ?? "Unknown",
-                        Mac = p.mac,
-                        ReleaseDate = p.ngayramat ?? DateTime.MinValue,
-                        NumberOfViewers = p.sove ?? 0,
-                        ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
-                        IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-1)) ? 1 : 0,
-                        IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
-                        Rating = p.sove ?? 0,
-                    })
-                    .ToList();
+            //if (ketQua.Count < 3) {
+            //    var additionalMovies = _context.Phims
+            //        .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim))
+            //        .OrderByDescending(p => p.ngayramat)
+            //        .ThenByDescending(p => p.sove)
+            //        .Take(5 - ketQua.Count)
+            //        .Select(p => new MovieData {
+            //            Id = p.id_phim,
+            //            Name = p.tenphim,
+            //            Genre = p.theloai ?? "Unknown",
+            //            Mac = p.mac,
+            //            ReleaseDate = p.ngayramat ?? DateTime.MinValue,
+            //            NumberOfViewers = p.sove ?? 0,
+            //            ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
+            //            IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-1)) ? 1 : 0,
+            //            IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
+            //            Rating = p.sove ?? 0,
+            //        })
+            //        .ToList();
 
-                ketQua.AddRange(additionalMovies);
-            }
+            //    ketQua.AddRange(additionalMovies);
+            //}
 
             // Giới hạn kết quả tối đa là 5 phim
             ketQua = ketQua.Take(5).ToList();
