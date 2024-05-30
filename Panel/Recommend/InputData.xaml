@@ -7,9 +7,42 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <TextBlock Text="This is a UserControl"
+        <!--<TextBlock Text="This is a UserControl"
            VerticalAlignment="Center"
            HorizontalAlignment="Center"
-           FontSize="16"/>
+           FontSize="16"/>-->
+        <StackPanel Background="#FFF69E9E">
+            <Label Content="Số người xem:"/>
+            <ComboBox Name="ComboBoxSoNguoi" Margin="5">
+                <ComboBoxItem Content="1 mình"/>
+                <ComboBoxItem Content="Cặp đôi"/>
+                <ComboBoxItem Content="Gia đình"/>
+                <ComboBoxItem Content="Nhóm bạn"/>
+            </ComboBox>
+            <Label Content="Tuổi:"/>
+            <TextBox Name="TextBoxTuoi" Margin="5" />
+            <Label Content="Giới tính:"/>
+            <ComboBox Name="ComboBoxGioiTinh" Margin="5">
+                <ComboBoxItem Content="Nam"/>
+                <ComboBoxItem Content="Nữ"/>
+            </ComboBox>
+            <Label Content="Sở thích:"/>
+            <ComboBox Name="ComboBoxSoThich" Margin="5" >
+                <ComboBoxItem Content="Hành động"/>
+                <ComboBoxItem Content="Hài hước"/>
+                <ComboBoxItem Content="Tình cảm"/>
+                <ComboBoxItem Content="Kinh dị"/>
+                <!--<ComboBoxItem Content="Hanh dong"/>
+                <ComboBoxItem Content="Hai Huoc"/>
+                <ComboBoxItem Content="Tinh cam"/>
+                <ComboBoxItem Content="Kinh di"/>-->
+            </ComboBox>
+            <Label Content="Loại phim:"/>
+            <ComboBox Name="ComboBoxTheLoai" Margin="5" >
+                <ComboBoxItem Content="Phim mới"/>
+                <ComboBoxItem Content="Phim hot"/>
+            </ComboBox>
+            <Button Content="Tìm phim" Width="100" Height="50" Click="ButtonTimPhim_Click"/>
+        </StackPanel>
     </Grid>
 </UserControl>

@@ -18,18 +18,16 @@ using Microsoft.ML;
 using Microsoft.ML.Data;
 using Microsoft.ML.Trainers.FastTree;
 
-namespace FilmRecommender.Panel.Recommend
-{
+namespace FilmRecommender.Panel.Recommend {
     /// <summary>
     /// Interaction logic for Recommend.xaml
     /// </summary>
-    public partial class Recommend : Page {
+    public partial class RebuildGrid : Page {
         private readonly CinemaContext _context;
         private readonly MLContext _mlContext;
         private ITransformer _model;
-        //private List<MovieData> ketqua;
 
-        public Recommend() {
+        public RebuildGrid() {
             InitializeComponent();
             //LoadImageNames();
             _context = new CinemaContext();
@@ -59,19 +57,19 @@ namespace FilmRecommender.Panel.Recommend
             }
         }
 
-        private void LoadImageNames() {
-            // Thêm tên ảnh vào ListBox (cần điều chỉnh đường dẫn ảnh)
-            ListBoxKetQua.Items.Add("PM00000020");
-            ListBoxKetQua.Items.Add("PM00000021");
-            ListBoxKetQua.Items.Add("PM00000022");
-        }
+        //private void LoadImageNames() {
+        //    // Thêm tên ảnh vào ListBox (cần điều chỉnh đường dẫn ảnh)
+        //    ListBoxKetQua.Items.Add("PM00000020");
+        //    ListBoxKetQua.Items.Add("PM00000021");
+        //    ListBoxKetQua.Items.Add("PM00000022");
+        //}
 
-        private void ListBoxImages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
-            if (ListBoxKetQua.SelectedItem != null) {
-                string selectedImage = ListBoxKetQua.SelectedItem.ToString();
-                SetImageSource(ImagePath(selectedImage));
-            }
-        }
+        //private void ListBoxImages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+        //    if (ListBoxKetQua.SelectedItem != null) {
+        //        string selectedImage = ListBoxKetQua.SelectedItem.ToString();
+        //        SetImageSource(ImagePath(selectedImage));
+        //    }
+        //}
 
         private void SetImageSource(string imagePath) {
             try {
@@ -174,7 +172,6 @@ namespace FilmRecommender.Panel.Recommend
             //    phimQuery = phimQuery.Where(p => p.mac != "PG");
             //}
 
-            //var ketQua = phimQuery
             var ketQua = phimQuery
                 .Where(p => ((theLoai == "Phim mới" && p.ngayramat.HasValue && p.ngayramat > DateTime.Now.AddMonths(-3)) ||
                             (theLoai == "Phim hot" && p.sove.HasValue && p.sove > 10)) &&
@@ -226,17 +223,7 @@ namespace FilmRecommender.Panel.Recommend
             // Giới hạn kết quả tối đa là 5 phim
             ketQua = ketQua.Take(5).ToList();
 
-            ListBoxKetQua.Items.Clear();
-            //foreach (var phim in ketQua) {
-            //ListBoxKetQua.Items.Add($"{phim.Genre} - {phim.ReleaseDateDays} ngày từ 0 - {phim.NumberOfViewers} lượt xem");
-            //ListBoxKetQua.Items.Add($"{phim.Genre} - {phim.ReleaseDateDays} ngày từ 0 - {phim.NumberOfViewers} lượt xem");
-            //}
-            //} catch (Exception ex) {
-            //    MessageBox.Show(ex.Message);
-            //}
-            foreach (var phim in ketQua) {
-                ListBoxKetQua.Items.Add($"Tên phim: {phim.Name}, Thể loại: {phim.Genre}, Mã: {phim.Mac}, Ngày ra mắt: {phim.ReleaseDate.ToShortDateString()}, Tổng số vé: {phim.NumberOfViewers}");
-            }
+            DataGridKetQua.ItemsSource = ketQua;
         }
     }
 }

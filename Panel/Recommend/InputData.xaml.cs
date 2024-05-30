@@ -24,5 +24,9 @@ namespace FilmRecommender.Panel.Recommend
         {
             InitializeComponent();
         }
+
+        private void ButtonTimPhim_Click(object sender, EventArgs e) {
+
+        }
     }
 }

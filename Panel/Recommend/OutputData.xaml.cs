@@ -12,21 +12,25 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using FilmRecommender.Panel.Recommend;
 
 namespace FilmRecommender.Panel.Recommend
 {
     /// <summary>
-    /// Interaction logic for FilmImage.xaml
+    /// Interaction logic for OutputData.xaml
     /// </summary>
-    public partial class FilmImage : UserControl
+    public partial class OutputData : UserControl
     {
-        public FilmImage()
+        public OutputData()
         {
             InitializeComponent();
         }
 
-        public void SetImageSource(string imagePath) {
-            imageDisplay.Source = new BitmapImage(new Uri(imagePath, UriKind.RelativeOrAbsolute));
+        private void ListBoxImages_SelectionChanged(object sender, SelectionChangedEventArgs e) {
+            if (listBoxImages.SelectedItem != null) {
+                string selectedImage = listBoxImages.SelectedItem.ToString();
+                //imageControl.SetImageSource(selectedImage);
+            }
         }
     }
 }
