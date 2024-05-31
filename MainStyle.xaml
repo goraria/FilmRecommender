@@ -48,7 +48,7 @@
     </Style>-->
 
     <!-- Border Radius Style for DataGrid -->
-    <Style TargetType="DataGrid">
+    <!--<Style TargetType="DataGrid">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGrid">
@@ -90,10 +90,10 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-    </Style>
+    </Style>-->
 
      <!-- Border Radius Style for DataGridCell --> 
-    <Style TargetType="DataGridCell">
+    <!--<Style TargetType="DataGridCell">
         <Setter Property="BorderThickness" Value="0"/>
         <Setter Property="Padding" Value="4"/>
         <Setter Property="Background" Value="Transparent"/>
@@ -116,7 +116,7 @@
                 <Setter Property="BorderThickness" Value="1"/>
             </Trigger>
         </Style.Triggers>
-    </Style>
+    </Style>-->
 
     <!-- Border Radius Style for TextBox -->
     <Style TargetType="TextBox">
