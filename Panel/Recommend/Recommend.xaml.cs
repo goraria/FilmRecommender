@@ -34,6 +34,31 @@ namespace FilmRecommender.Panel.Recommend
             //LoadImageNames();
             _context = new CinemaContext();
             _mlContext = new MLContext();
+            loadgenrenames();
+        }
+        private void loadgenrenames()
+        {
+            // thêm tên ảnh vào listbox (cần điều chỉnh đường dẫn ảnh)
+            var data = _context.Phims
+                .Where(p => p.theloai != null)
+                .Select(p => new Phim
+                {
+                    theloai = p.theloai ?? "",
+                }).ToList();
+            List<string> genreList = new List<string>();
+            foreach (var phim in data)
+            {
+                List<string> list = new List<string>(phim.theloai.ToString().Split(", ")); 
+                foreach( var genre in list)
+                {
+                    if (!genreList.Contains(genre))
+                    {
+                        genreList.Add(genre);
+                        ComboBoxSoThich.Items.Add(genre);
+                    }
+                }
+                
+            }
         }
 
         private string ImagePath(string filename) {
