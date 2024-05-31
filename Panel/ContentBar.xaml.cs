@@ -27,7 +27,8 @@ namespace FilmRecommender.Panel {
         public ContentBar() {
             InitializeComponent();
             //MainFrame.Navigate(new FilmRecommender.Panel.Recommend.Recommend());
-            MainFrame.Navigate(new FilmRecommender.Panel.Recommend.RebuildGrid());
+            //MainFrame.Navigate(new FilmRecommender.Panel.Recommend.RebuildGrid());
+            MainFrame.Navigate(new FilmRecommender.Panel.Recommend.RetrainGrid());
         }
 
         public void NavigateToHome() { // private

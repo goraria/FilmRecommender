@@ -5,12 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.ML.Data;
 
-namespace FilmRecommender.Panel.Recommend
-{
-    public class CinemaContext : DbContext
-    {
+namespace FilmRecommender.Panel.Recommend {
+    public class CinemaContext : DbContext {
         public DbSet<Phim> Phims { get; set; }
         public DbSet<Khachhang> Khachhangs { get; set; }
         public DbSet<Ve> Ves { get; set; }
@@ -21,13 +20,11 @@ namespace FilmRecommender.Panel.Recommend
         public DbSet<Thanhvien> Thanhviens { get; set; }
         public DbSet<Cachieu> Cachieus { get; set; }
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) {
             optionsBuilder.UseSqlServer("Data Source=OSX;Initial Catalog=Recommender;Integrated Security=True;TrustServerCertificate=True");
         }
 
-        protected override void OnModelCreating(ModelBuilder modelBuilder)
-        {
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
             modelBuilder.Entity<Cachieu>().HasKey(c => c.id_cachieu);
             modelBuilder.Entity<Doan>().HasKey(d => d.id_doan);
             modelBuilder.Entity<Ghe>().HasKey(g => g.id_ghe);
@@ -37,37 +34,20 @@ namespace FilmRecommender.Panel.Recommend
             modelBuilder.Entity<Phong>().HasKey(p => p.id_phong);
             modelBuilder.Entity<Thanhvien>().HasKey(t => t.id_thanhvien);
             modelBuilder.Entity<Ve>().HasKey(v => v.id_ve);
+            modelBuilder.Entity<Ve>()
+               .HasOne(v => v.Phim)
+               .WithMany(p => p.Ves)
+               .HasForeignKey(v => v.id_phim);
+
+            modelBuilder.Entity<Ve>()
+                .HasOne(v => v.Khachhang)
+                .WithMany(k => k.Ves)
+                .HasForeignKey(v => v.id_khachhang);
         }
     }
 
-    [Table("Phim")]
-    public class Phim
-    {
-        public string id_phim { get; set; }
-        public string tenphim { get; set; }
-        public string quocgia { get; set; }
-        public string theloai { get; set; }
-        public int? sove { get; set; }
-        public int? thoiluong { get; set; }
-        public string hanglamphim { get; set; }
-        public DateTime? ngayramat { get; set; }
-        public string mac { get; set; }
-    }
-
-    [Table("Khachhang")]
-    public class Khachhang
-    {
-        public string id_khachhang { get; set; }
-        public string hoten { get; set; }
-        public DateTime? ngaysinh { get; set; }
-        public string diachi { get; set; }
-        public string gioitinh { get; set; }
-        public string sodienthoai { get; set; }
-    }
-
     [Table("Ve")]
-    public class Ve
-    {
+    public class Ve {
         public string id_ve { get; set; }
         public string id_phim { get; set; }
         public string id_phong { get; set; }
@@ -77,11 +57,38 @@ namespace FilmRecommender.Panel.Recommend
         public string id_cachieu { get; set; }
         public DateTime? ngayban { get; set; }
         public int? giave { get; set; }
+
+        public Phim Phim { get; set; }
+        public Khachhang Khachhang { get; set; }
+    }
+
+    [Table("Phim")]
+    public class Phim {
+        public string id_phim { get; set; }
+        public string tenphim { get; set; }
+        public string quocgia { get; set; }
+        public string theloai { get; set; }
+        public int? sove { get; set; }
+        public int? thoiluong { get; set; }
+        public string hanglamphim { get; set; }
+        public DateTime? ngayramat { get; set; }
+        public string mac { get; set; }
+        public ICollection<Ve> Ves { get; set; }
+    }
+
+    [Table("Khachhang")]
+    public class Khachhang {
+        public string id_khachhang { get; set; }
+        public string hoten { get; set; }
+        public DateTime? ngaysinh { get; set; }
+        public string diachi { get; set; }
+        public string gioitinh { get; set; }
+        public string sodienthoai { get; set; }
+        public ICollection<Ve> Ves { get; set; }
     }
 
     [Table("Ghe")]
-    public class Ghe
-    {
+    public class Ghe {
         public string id_ghe { get; set; }
         public string id_phong { get; set; }
         public string tenghe { get; set; }
@@ -90,8 +97,7 @@ namespace FilmRecommender.Panel.Recommend
     }
 
     [Table("Phong")]
-    public class Phong
-    {
+    public class Phong {
         public string id_phong { get; set; }
         public string tenphong { get; set; }
         public int? soghe { get; set; }
@@ -99,8 +105,7 @@ namespace FilmRecommender.Panel.Recommend
     }
 
     [Table("Doan")]
-    public class Doan
-    {
+    public class Doan {
         public string id_doan { get; set; }
         public string ten { get; set; }
         public string loai { get; set; }
@@ -109,8 +114,7 @@ namespace FilmRecommender.Panel.Recommend
     }
 
     [Table("Hoadon")]
-    public class Hoadon
-    {
+    public class Hoadon {
         public string id_hoadon { get; set; }
         public string id_doan { get; set; }
         public string id_khachhang { get; set; }
@@ -121,8 +125,7 @@ namespace FilmRecommender.Panel.Recommend
     }
 
     [Table("Thanhvien")]
-    public class Thanhvien
-    {
+    public class Thanhvien {
         public string id_thanhvien { get; set; }
         public string hoten { get; set; }
         public DateTime? ngaysinh { get; set; }
@@ -135,14 +138,14 @@ namespace FilmRecommender.Panel.Recommend
     }
 
     [Table("Cachieu")]
-    public class Cachieu
-    {
+    public class Cachieu {
         public string id_cachieu { get; set; }
         public string tencachieu { get; set; }
         public TimeSpan? thoigian_batdau { get; set; }
         public TimeSpan? thoigian_ketthuc { get; set; }
     }
 
+    [Table("Training")]
     public class MovieData {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -155,6 +158,8 @@ namespace FilmRecommender.Panel.Recommend
         public float IsHot { get; set; }
         public float Rating { get; set; }
         public float Label { get; set; }
+        public float CustomerAge { get; set; }
+        public float CustomerGender { get; set; }
     }
 
     public class MoviePrediction {

@@ -1,0 +1,65 @@
+﻿<Page x:Class="FilmRecommender.Panel.Recommend.RetrainGrid"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:FilmRecommender.Panel.Recommend"
+      mc:Ignorable="d" 
+      d:DesignHeight="720" d:DesignWidth="1280"
+      Title="RetrainGrid">
+
+    <Grid>
+        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFEEDDFF">
+            <Grid Background="#FFEEDDFF">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="200"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--<local:InputData Grid.Column="0"/>
+                <local:OutputData Grid.Column="1"/>
+                <local:FilmImage Grid.Column="2"/>-->
+                <StackPanel Background="#FFF69E9E">
+                    <Label Content="Số người xem:" FontFamily="Arial" FontSize="14"/>
+                    <ComboBox Name="ComboBoxSoNguoi" Margin="5" FontFamily="Arial" FontSize="14">
+                        <ComboBoxItem Content="1 mình"/>
+                        <ComboBoxItem Content="Cặp đôi"/>
+                        <ComboBoxItem Content="Gia đình"/>
+                        <ComboBoxItem Content="Nhóm bạn"/>
+                    </ComboBox>
+                    <Label Content="Tuổi:" FontFamily="Arial" FontSize="14"/>
+                    <TextBox Name="TextBoxTuoi" Margin="5" FontFamily="Arial" FontSize="14" />
+                    <Label Content="Giới tính:" FontFamily="Arial" FontSize="14"/>
+                    <ComboBox Name="ComboBoxGioiTinh" Margin="5" FontFamily="Arial" FontSize="14">
+                        <ComboBoxItem Content="Nam"/>
+                        <ComboBoxItem Content="Nữ"/>
+                    </ComboBox>
+                    <Label Content="Sở thích:" FontFamily="Arial" FontSize="14"/>
+                    <ComboBox Name="ComboBoxSoThich" Margin="5" FontFamily="Arial" FontSize="14" >
+                        <!--<ComboBoxItem Content="Hành động"/>
+                        <ComboBoxItem Content="Hài hước"/>
+                        <ComboBoxItem Content="Tình cảm"/>
+                        <ComboBoxItem Content="Kinh dị"/>-->
+                    </ComboBox>
+                    <Label Content="Loại phim:" FontFamily="Arial" FontSize="14"/>
+                    <ComboBox Name="ComboBoxTheLoai" Margin="5" FontFamily="Arial" FontSize="14" >
+                        <ComboBoxItem Content="Phim mới"/>
+                        <ComboBoxItem Content="Phim hot"/>
+                    </ComboBox>
+                    <Button Content="Tìm phim" Height="25" Margin="5 50 5 5" Click="ButtonTimPhim_Click" FontFamily="Arial" FontSize="14"/>
+                </StackPanel>
+                <DataGrid Name="DataGridKetQua" Grid.Column="1" AutoGenerateColumns="False" SelectionChanged="DataGridKetQua_SelectionChanged">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="ID phim" Binding="{Binding Id}" Width="*"/>
+                        <DataGridTextColumn Header="Tên phim" Binding="{Binding Name}" Width="*"/>
+                        <DataGridTextColumn Header="Thể loại" Binding="{Binding Genre}" Width="*"/>
+                        <DataGridTextColumn Header="Mã" Binding="{Binding Mac}" Width="*"/>
+                        <!--<DataGridTextColumn Header="Ngày ra mắt" Binding="{Binding ReleaseDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="*"/>-->
+                        <DataGridTextColumn Header="Tổng số vé" Binding="{Binding NumberOfViewers}" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <Image x:Name="imageDisplay" Grid.Column="2" Stretch="Uniform"/>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
