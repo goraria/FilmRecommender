@@ -147,9 +147,12 @@ namespace FilmRecommender.Panel.Recommend {
         }
 
         private void TrainResult() {
-            DataGridKetQua.ItemsSource = null;
+            //DataGridKetQua.ItemsSource = null;
             string? soNguoi = (ComboBoxSoNguoi.SelectedItem as ComboBoxItem)?.Content.ToString();
-            int tuoi = int.Parse(TextBoxTuoi.Text);
+            if (!int.TryParse(TextBoxTuoi.Text, out int tuoi)) {
+                MessageBox.Show("Vui lòng nhập tuổi hợp lệ.");
+                return;
+            }
             string? gioiTinh = (ComboBoxGioiTinh.SelectedItem as ComboBoxItem)?.Content.ToString();
             string? soThich = (ComboBoxSoThich.SelectedItem as ComboBoxItem)?.Content.ToString();
             string? theLoai = (ComboBoxTheLoai.SelectedItem as ComboBoxItem)?.Content.ToString();
@@ -173,6 +176,17 @@ namespace FilmRecommender.Panel.Recommend {
                     phimQuery = phimQuery.Where(p => p.mac == "G");
                 }
             }
+
+            //var phimList = phimQuery
+            //    .Where(p => ((theLoai == "Phim mới" && p.ngayramat.HasValue && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
+            //                (theLoai == "Phim hot" && p.sove.HasValue && p.sove > 20)) &&
+            //                (p.theloai != null && soThich != null && p.theloai.Contains(soThich)))
+            //    .ToList();
+
+            //if (phimList.Count == 0) {
+            //    MessageBox.Show("Không tìm thấy phim nào phù hợp với các tiêu chí.");
+            //    return;
+            //}
 
             var ketQua = phimQuery
                 .Where(p => ((theLoai == "Phim mới" && p.ngayramat.HasValue && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
@@ -202,11 +216,11 @@ namespace FilmRecommender.Panel.Recommend {
                 .ToList();
 
             //if (ketQua.Count < 3) {
-            //    // Thêm phim cùng điều kiện về nhãn phim trước
+            //    var firstMovieMac = ketQua.FirstOrDefault()?.Mac;
             //    var additionalMovies = _context.Phims
             //        .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) &&
             //                    ((theLoai == "Phim mới" && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
-            //                     (theLoai == "Phim hot" && p.sove > 20)) && (p.mac != null && p.mac == ketQua.FirstOrDefault()?.Mac))
+            //                     (theLoai == "Phim hot" && p.sove > 20)) && (p.mac != null && p.mac == firstMovieMac))
             //        .OrderByDescending(p => p.ngayramat)
             //        .ThenByDescending(p => p.sove)
             //        .Take(5 - ketQua.Count)
@@ -261,6 +275,68 @@ namespace FilmRecommender.Panel.Recommend {
             DataGridKetQua.ItemsSource = ketQua;
         }
 
+        private void TrainResult2() {
+            if (!int.TryParse(TextBoxTuoi.Text, out int tuoi)) {
+                MessageBox.Show("Vui lòng nhập tuổi hợp lệ.");
+                return;
+            }
+
+            string? soNguoi = (ComboBoxSoNguoi.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string? gioiTinh = (ComboBoxGioiTinh.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string? soThich = (ComboBoxSoThich.SelectedItem as ComboBoxItem)?.Content.ToString();
+            string? theLoai = (ComboBoxTheLoai.SelectedItem as ComboBoxItem)?.Content.ToString();
+
+            _model = TrainModel(200);
+            var predictionEngine = _mlContext.Model.CreatePredictionEngine<MovieData, MoviePrediction>(_model);
+            var phimQuery = _context.Phims.AsQueryable();
+
+            if (soNguoi == "Gia đình") {
+                phimQuery = phimQuery.Where(p => p.theloai.Contains("Hài hước") || p.theloai.Contains("Hoạt hình"));
+            } else if (soNguoi == "Cặp đôi") {
+                phimQuery = phimQuery.Where(p => p.theloai.Contains("Tình cảm") || p.theloai.Contains("Hài hước"));
+            } else {
+                if (tuoi <= 15 && tuoi > 13) {
+                    phimQuery = phimQuery.Where(p => p.mac != "R");
+                } else if (tuoi <= 13) {
+                    phimQuery = phimQuery.Where(p => p.mac == "G");
+                }
+            }
+
+            var ketQua = phimQuery
+                .Where(p => ((theLoai == "Phim mới" && p.ngayramat.HasValue && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
+                            (theLoai == "Phim hot" && p.sove.HasValue && p.sove > 20)) &&
+                            (p.theloai != null && soThich != null && p.theloai.Contains(soThich)))
+                .ToList()
+                .Select(p => new MovieData {
+                    Id = p.id_phim,
+                    Name = p.tenphim,
+                    Genre = p.theloai ?? "Unknown",
+                    Mac = p.mac,
+                    ReleaseDate = p.ngayramat ?? DateTime.MinValue,
+                    NumberOfViewers = p.sove ?? 0,
+                    ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
+                    IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-1)) ? 1 : 0,
+                    IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
+                    Rating = p.sove ?? 0,
+                    CustomerAge = tuoi,
+                    CustomerGender = gioiTinh == "Nam" ? 1 : 0
+                })
+                .Select(md => new {
+                    Movie = md,
+                    Prediction = predictionEngine.Predict(md)
+                })
+                .OrderByDescending(result => result.Prediction.Score)
+                .Select(result => result.Movie)
+                .ToList();
+
+            if (!ketQua.Any()) {
+                MessageBox.Show("Không tìm thấy phim nào phù hợp với các tiêu chí.");
+            }
+
+            DataGridKetQua.ItemsSource = ketQua.Take(5).ToList();
+        }
+
+
         //private void TrainSelected(string? soNguoi, int tuoi, string? gioiTinh, string? soThich, string? theLoai, int tree) {
         //    _model = TrainModel(tree);
         //    var predictionEngine = _mlContext.Model.CreatePredictionEngine<MovieData, MoviePrediction>(_model);
@@ -294,7 +370,7 @@ namespace FilmRecommender.Panel.Recommend {
         //}
 
         private void ButtonTimPhim_Click(object sender, RoutedEventArgs e) {
-            TrainResult();
+            TrainResult2();
         }
     }
 }
