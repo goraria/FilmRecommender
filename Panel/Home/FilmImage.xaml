@@ -7,8 +7,9 @@
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <Grid>
-        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFE6FF86">
-            <Grid Background="#FFE6FF86">
+        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFFFFFFF">
+            <Grid Background="#FFFFFFFF">
+                <Image x:Name="imageDisplay" Stretch="Uniform"/>
             </Grid>
         </Border>
     </Grid>

@@ -13,16 +13,15 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace FilmRecommender.Panel.Home
-{
+namespace FilmRecommender.Panel.Home {
     /// <summary>
     /// Interaction logic for FilmImage.xaml
     /// </summary>
-    public partial class FilmImage : UserControl
-    {
-        public FilmImage()
-        {
+    public partial class FilmImage : UserControl {
+        public FilmImage() {
             InitializeComponent();
         }
+
+
     }
 }

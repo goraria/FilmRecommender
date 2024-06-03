@@ -21,6 +21,27 @@ namespace FilmRecommender.Panel.Home {
     public partial class Home : Page {
         public Home() {
             InitializeComponent();
+            NavigateToHotRequested += () => NavigateToHot();
+            NavigateToNewRequested += () => NavigateToNew();
+        }
+
+        public event Action NavigateToHotRequested;
+        public event Action NavigateToNewRequested;
+
+        private void NavigateToHot(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToHotRequested?.Invoke();
+        }
+
+        private void NavigateToNew(object sender, System.Windows.RoutedEventArgs e) {
+            NavigateToNewRequested?.Invoke();
+        }
+
+        private void NavigateToHot() {
+            HomeFrame.Navigate(new FilmRecommender.Panel.Home.FilmHot());
+        }
+
+        private void NavigateToNew() {
+            HomeFrame.Navigate(new FilmRecommender.Panel.Home.FilmNew());
         }
     }
 }
