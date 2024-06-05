@@ -175,7 +175,8 @@ namespace FilmRecommender.Panel.Recommend {
         }
 
         private void TrainResult() {
-            //DataGridKetQua.ItemsSource = null;
+            DataGridKetQua.ItemsSource = null;
+
             string? soNguoi = (ComboBoxSoNguoi.SelectedItem as ComboBoxItem)?.Content.ToString();
             if (!int.TryParse(TextBoxTuoi.Text, out int tuoi)) {
                 MessageBox.Show("Vui lòng nhập tuổi hợp lệ.");
