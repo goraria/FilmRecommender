@@ -21,6 +21,6 @@
                 <localRecommend:Recommend HorizontalAlignment="Center" VerticalAlignment="Center"/>
             </Grid>
         </Border>-->
-        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="{DynamicResource {x:Static SystemColors.ActiveCaptionBrushKey}}" />
+        <Frame x:Name="MainFrame" NavigationUIVisibility="Hidden" Background="#FFDDDDDD" />
     </Grid>
 </UserControl>

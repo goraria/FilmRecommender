@@ -9,8 +9,8 @@
       Title="RetrainGrid">
 
     <Grid>
-        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFEEDDFF">
-            <Grid Background="#FFEEDDFF">
+        <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFFFFFFF">
+            <Grid Background="#FFFFFFFF">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="200"/>
                     <ColumnDefinition Width="*"/>
@@ -19,35 +19,37 @@
                 <!--<local:InputData Grid.Column="0"/>
                 <local:OutputData Grid.Column="1"/>
                 <local:FilmImage Grid.Column="2"/>-->
-                <StackPanel Background="#FFF69E9E">
-                    <Label Content="Số người xem:" FontFamily="Arial" FontSize="14"/>
-                    <ComboBox Name="ComboBoxSoNguoi" Margin="5" FontFamily="Arial" FontSize="14">
-                        <ComboBoxItem Content="1 mình"/>
-                        <ComboBoxItem Content="Cặp đôi"/>
-                        <ComboBoxItem Content="Gia đình"/>
-                        <ComboBoxItem Content="Nhóm bạn"/>
-                    </ComboBox>
-                    <Label Content="Tuổi:" FontFamily="Arial" FontSize="14"/>
-                    <TextBox Name="TextBoxTuoi" Margin="5" FontFamily="Arial" FontSize="14" />
-                    <Label Content="Giới tính:" FontFamily="Arial" FontSize="14"/>
-                    <ComboBox Name="ComboBoxGioiTinh" Margin="5" FontFamily="Arial" FontSize="14">
-                        <ComboBoxItem Content="Nam"/>
-                        <ComboBoxItem Content="Nữ"/>
-                    </ComboBox>
-                    <Label Content="Sở thích:" FontFamily="Arial" FontSize="14"/>
-                    <ComboBox Name="ComboBoxSoThich" Margin="5" FontFamily="Arial" FontSize="14" >
-                        <!--<ComboBoxItem Content="Hành động"/>
-                        <ComboBoxItem Content="Hài hước"/>
-                        <ComboBoxItem Content="Tình cảm"/>
-                        <ComboBoxItem Content="Kinh dị"/>-->
-                    </ComboBox>
-                    <Label Content="Loại phim:" FontFamily="Arial" FontSize="14"/>
-                    <ComboBox Name="ComboBoxTheLoai" Margin="5" FontFamily="Arial" FontSize="14" >
-                        <ComboBoxItem Content="Phim mới"/>
-                        <ComboBoxItem Content="Phim hot"/>
-                    </ComboBox>
-                    <Button Content="Tìm phim" Height="25" Margin="5 50 5 5" Click="ButtonTimPhim_Click" FontFamily="Arial" FontSize="14"/>
-                </StackPanel>
+                <Border BorderThickness="1" CornerRadius="5" BorderBrush="#FFDDDDDD">
+                    <StackPanel Background="#FFDDDDDD">
+                        <Label Content="Số người xem:" FontFamily="Arial" FontSize="14"/>
+                        <ComboBox Name="ComboBoxSoNguoi" Margin="5" FontFamily="Arial" FontSize="14">
+                            <ComboBoxItem Content="1 mình"/>
+                            <ComboBoxItem Content="Cặp đôi"/>
+                            <ComboBoxItem Content="Gia đình"/>
+                            <ComboBoxItem Content="Nhóm bạn"/>
+                        </ComboBox>
+                        <Label Content="Tuổi:" FontFamily="Arial" FontSize="14"/>
+                        <TextBox Name="TextBoxTuoi" Margin="5" FontFamily="Arial" FontSize="14" />
+                        <Label Content="Giới tính:" FontFamily="Arial" FontSize="14"/>
+                        <ComboBox Name="ComboBoxGioiTinh" Margin="5" FontFamily="Arial" FontSize="14">
+                            <ComboBoxItem Content="Nam"/>
+                            <ComboBoxItem Content="Nữ"/>
+                        </ComboBox>
+                        <Label Content="Sở thích:" FontFamily="Arial" FontSize="14"/>
+                        <ComboBox Name="ComboBoxSoThich" Margin="5" FontFamily="Arial" FontSize="14" >
+                            <!--<ComboBoxItem Content="Hành động"/>
+                            <ComboBoxItem Content="Hài hước"/>
+                            <ComboBoxItem Content="Tình cảm"/>
+                            <ComboBoxItem Content="Kinh dị"/>-->
+                        </ComboBox>
+                        <Label Content="Loại phim:" FontFamily="Arial" FontSize="14"/>
+                        <ComboBox Name="ComboBoxTheLoai" Margin="5" FontFamily="Arial" FontSize="14" >
+                            <ComboBoxItem Content="Phim mới"/>
+                            <ComboBoxItem Content="Phim hot"/>
+                        </ComboBox>
+                        <Button Content="Tìm phim" Height="25" Background="#FFFFFFFF" Margin="5 50 5 5" Click="ButtonTimPhim_Click" FontFamily="Arial" FontSize="14"/>
+                    </StackPanel>
+                </Border>
                 <DataGrid Name="DataGridKetQua" Grid.Column="1" AutoGenerateColumns="False" SelectionChanged="DataGridKetQua_SelectionChanged">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID phim" Binding="{Binding Id}" Width="*"/>
@@ -58,7 +60,7 @@
                         <DataGridTextColumn Header="Tổng số vé" Binding="{Binding NumberOfViewers}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Image x:Name="imageDisplay" Grid.Column="2" Stretch="Uniform"/>
+                <Image x:Name="imageDisplay" Grid.Column="2" Stretch="Uniform" />
             </Grid>
         </Border>
     </Grid>
