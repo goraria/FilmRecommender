@@ -23,6 +23,7 @@ namespace FilmRecommender.Panel.Home {
             InitializeComponent();
             NavigateToHotRequested += () => NavigateToHot();
             NavigateToNewRequested += () => NavigateToNew();
+            HomeFrame.Navigate(new FilmRecommender.Panel.Home.FilmHot());
         }
 
         public event Action NavigateToHotRequested;

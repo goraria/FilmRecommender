@@ -50,7 +50,7 @@
                         <Button Content="Tìm phim" Height="25" Background="#FFFFFFFF" Margin="5 50 5 5" Click="ButtonTimPhim_Click" FontFamily="Arial" FontSize="14"/>
                     </StackPanel>
                 </Border>
-                <DataGrid Name="DataGridKetQua" Grid.Column="1" AutoGenerateColumns="False" SelectionChanged="DataGridKetQua_SelectionChanged">
+                <DataGrid Name="DataGridKetQua" Grid.Column="1" Margin="5 0" AutoGenerateColumns="False" SelectionChanged="DataGridKetQua_SelectionChanged" FontFamily="Arial" FontSize="14">
                     <DataGrid.Columns>
                         <DataGridTextColumn Header="ID phim" Binding="{Binding Id}" Width="*"/>
                         <DataGridTextColumn Header="Tên phim" Binding="{Binding Name}" Width="*"/>
@@ -60,7 +60,9 @@
                         <DataGridTextColumn Header="Tổng số vé" Binding="{Binding NumberOfViewers}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <Image x:Name="imageDisplay" Grid.Column="2" Stretch="Uniform" />
+                <Border BorderThickness="5" CornerRadius="5" BorderBrush="#FFDDDDDD" Grid.Column="2">
+                    <Image Name="imageDisplay" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                </Border>
             </Grid>
         </Border>
     </Grid>

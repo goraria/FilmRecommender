@@ -140,7 +140,7 @@ namespace FilmRecommender.Panel.Recommend {
                     NumberOfViewers = x.phim.sove ?? 0,
                     Genre = x.phim.theloai ?? "Unknown",
                     ReleaseDateDays = (float)((x.phim.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
-                    IsNew = ((x.phim.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-3)) ? 1 : 0,
+                    IsNew = ((x.phim.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
                     IsHot = (x.phim.sove ?? 0) > 20 ? 1 : 0,
                     Rating = x.phim.sove ?? 0,
                     Label = 1, // Dummy label for regression
@@ -230,7 +230,7 @@ namespace FilmRecommender.Panel.Recommend {
                     NumberOfViewers = p.sove ?? 0,
                     ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
                     IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
-                    IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
+                    IsHot = (p.sove ?? 0) > 20 ? 1 : 0,
                     Rating = p.sove ?? 0,
                     CustomerAge = tuoi,
                     CustomerGender = gioiTinh == "Nam" ? 1 : 0
@@ -243,64 +243,70 @@ namespace FilmRecommender.Panel.Recommend {
                 .Select(result => result.Movie)
                 .ToList();
 
-            if (ketQua.Count < 3) {
-                var firstMovieMac = ketQua.FirstOrDefault()?.Mac;
-                var additionalMovies = _context.Phims
-                    .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) &&
-                                ((theLoai == "Phim mới" && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
-                                 (theLoai == "Phim hot" && p.sove > 20)) && (p.mac != null && p.mac == firstMovieMac))
-                    .OrderByDescending(p => p.ngayramat)
-                    .ThenByDescending(p => p.sove)
-                    .Take(5 - ketQua.Count)
-                    .Select(p => new MovieData {
-                        Id = p.id_phim,
-                        Name = p.tenphim,
-                        Genre = p.theloai ?? "Unknown",
-                        Mac = p.mac,
-                        ReleaseDate = p.ngayramat ?? DateTime.MinValue,
-                        NumberOfViewers = p.sove ?? 0,
-                        ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
-                        IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
-                        IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
-                        Rating = p.sove ?? 0,
-                        CustomerAge = tuoi,
-                        CustomerGender = gioiTinh == "Nam" ? 1 : 0
-                    })
-                    .ToList();
+            //if (ketQua.Count < 3) {
+            //    var firstMovieMac = ketQua.FirstOrDefault()?.Mac;
+            //    var additionalMovies = _context.Phims
+            //        .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) &&
+            //                    ((theLoai == "Phim mới" && p.ngayramat > DateTime.Now.AddMonths(-2)) ||
+            //                     (theLoai == "Phim hot" && p.sove > 20)) && (p.mac != null && p.mac == firstMovieMac))
+            //        .OrderByDescending(p => p.ngayramat)
+            //        .ThenByDescending(p => p.sove)
+            //        .Take(5 - ketQua.Count)
+            //        .Select(p => new MovieData {
+            //            Id = p.id_phim,
+            //            Name = p.tenphim,
+            //            Genre = p.theloai ?? "Unknown",
+            //            Mac = p.mac,
+            //            ReleaseDate = p.ngayramat ?? DateTime.MinValue,
+            //            NumberOfViewers = p.sove ?? 0,
+            //            ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
+            //            IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
+            //            IsHot = (p.sove ?? 0) > 20 ? 1 : 0,
+            //            Rating = p.sove ?? 0,
+            //            CustomerAge = tuoi,
+            //            CustomerGender = gioiTinh == "Nam" ? 1 : 0
+            //        })
+            //        .ToList();
 
-                ketQua.AddRange(additionalMovies);
+            //    ketQua.AddRange(additionalMovies);
+            //}
+
+            //if (ketQua.Count < 3) {
+            //    // Nếu vẫn không đủ, thêm phim theo tiêu chí thể loại
+            //    var additionalMovies = _context.Phims
+            //        //.Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) && p.theloai.Contains(soThich))
+            //        .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) && p.mac.Contains(""))
+            //        .OrderByDescending(p => p.ngayramat)
+            //        .ThenByDescending(p => p.sove)
+            //        .Take(5 - ketQua.Count)
+            //        .Select(p => new MovieData {
+            //            Id = p.id_phim,
+            //            Name = p.tenphim,
+            //            Genre = p.theloai ?? "Unknown",
+            //            Mac = p.mac,
+            //            ReleaseDate = p.ngayramat ?? DateTime.MinValue,
+            //            NumberOfViewers = p.sove ?? 0,
+            //            ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
+            //            IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
+            //            IsHot = (p.sove ?? 0) > 20 ? 1 : 0,
+            //            Rating = p.sove ?? 0,
+            //            CustomerAge = tuoi,
+            //            CustomerGender = gioiTinh == "Nam" ? 1 : 0
+            //        })
+            //        .ToList();
+
+            //    ketQua.AddRange(additionalMovies);
+            //}
+
+            //ketQua = ketQua.Take(5).ToList();
+
+            if (!ketQua.Any()) {
+                MessageBox.Show("Không tìm thấy phim nào phù hợp với các tiêu chí đã chọn.");
+            } else {
+                DataGridKetQua.ItemsSource = ketQua.Take(5).ToList();
             }
 
-            if (ketQua.Count < 3) {
-                // Nếu vẫn không đủ, thêm phim theo tiêu chí thể loại
-                var additionalMovies = _context.Phims
-                    //.Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) && p.theloai.Contains(soThich))
-                    .Where(p => !ketQua.Select(k => k.Id).Contains(p.id_phim) && p.mac.Contains(""))
-                    .OrderByDescending(p => p.ngayramat)
-                    .ThenByDescending(p => p.sove)
-                    .Take(5 - ketQua.Count)
-                    .Select(p => new MovieData {
-                        Id = p.id_phim,
-                        Name = p.tenphim,
-                        Genre = p.theloai ?? "Unknown",
-                        Mac = p.mac,
-                        ReleaseDate = p.ngayramat ?? DateTime.MinValue,
-                        NumberOfViewers = p.sove ?? 0,
-                        ReleaseDateDays = (float)((p.ngayramat ?? DateTime.Now) - new DateTime(2000, 1, 1)).TotalDays,
-                        IsNew = ((p.ngayramat ?? DateTime.Now) > DateTime.Now.AddMonths(-2)) ? 1 : 0,
-                        IsHot = (p.sove ?? 0) > 100 ? 1 : 0,
-                        Rating = p.sove ?? 0,
-                        CustomerAge = tuoi,
-                        CustomerGender = gioiTinh == "Nam" ? 1 : 0
-                    })
-                    .ToList();
-
-                ketQua.AddRange(additionalMovies);
-            }
-
-            ketQua = ketQua.Take(5).ToList();
-
-            DataGridKetQua.ItemsSource = ketQua;
+            //DataGridKetQua.ItemsSource = ketQua;
         }
 
         private void ButtonTimPhim_Click(object sender, RoutedEventArgs e) {

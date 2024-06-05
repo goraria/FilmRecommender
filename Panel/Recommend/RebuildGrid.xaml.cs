@@ -34,13 +34,22 @@ namespace FilmRecommender.Panel.Recommend {
             _mlContext = new MLContext();
             LoadGenreNames();
         }
-
-        public void LoadGenreNames() {
+        private void LoadGenreNames() {
             var data = _context.Phims
                 .Where(p => p.theloai != null)
                 .Select(p => new Phim {
                     theloai = p.theloai ?? "",
                 }).ToList();
+            List<string> genreList = new List<string>();
+            foreach (var phim in data) {
+                List<string> list = new List<string>(phim.theloai.ToString().Split(", "));
+                foreach (var genre in list) {
+                    if (!genreList.Contains(genre)) {
+                        genreList.Add(genre);
+                        ComboBoxSoThich.Items.Add(genre);
+                    }
+                }
+            }
         }
 
         private string ImagePath(string filename) {

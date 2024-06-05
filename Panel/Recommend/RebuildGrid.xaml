@@ -58,7 +58,6 @@
                         <DataGridTextColumn Header="Tên phim" Binding="{Binding Name}" Width="*"/>
                         <DataGridTextColumn Header="Thể loại" Binding="{Binding Genre}" Width="*"/>
                         <DataGridTextColumn Header="Mã" Binding="{Binding Mac}" Width="*"/>
-                        <!--<DataGridTextColumn Header="Ngày ra mắt" Binding="{Binding ReleaseDate, StringFormat=\{0:dd/MM/yyyy\}}" Width="*"/>-->
                         <DataGridTextColumn Header="Tổng số vé" Binding="{Binding NumberOfViewers}" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>

@@ -14,10 +14,14 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <WrapPanel Grid.Row="0">
-            <Button Content="Hot" Width="150" Height="50" Margin="5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Click="NavigateToHot" />
-            <Button Content="New" Width="150" Height="50" Margin="5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Click="NavigateToNew" />
+            <Button Content="Hot" Background="#FFFFFFFF" Width="150" Height="50" Margin="5 5 0 5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Click="NavigateToHot" />
+            <Button Content="New" Background="#FFFFFFFF" Width="150" Height="50" Margin="5 5 0 5" FontFamily="Arial" FontSize="14" FontWeight="Bold" Click="NavigateToNew" />
         </WrapPanel>
-        <Frame x:Name="HomeFrame" NavigationUIVisibility="Hidden" Grid.Row="1" />
+        <Border BorderThickness="5" CornerRadius="5" Margin="5 0 5 5" BorderBrush="#FFFFFFFF" Grid.Row="1" >
+            <Grid>
+                <Frame x:Name="HomeFrame" NavigationUIVisibility="Hidden" Background="#FFFFFFFF"/>
+            </Grid>
+        </Border>
     </Grid>
 
 </Page>

@@ -23,34 +23,34 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="0" Grid.Column="0">
-            <Image Name="FilmImage0" Stretch="UniformToFill" />
+            <Image Name="FilmImage0" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="0" Grid.Column="1">
-            <Image Name="FilmImage1" Stretch="UniformToFill" />
+            <Image Name="FilmImage1" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="0" Grid.Column="2">
-            <Image Name="FilmImage2" Stretch="UniformToFill" />
+            <Image Name="FilmImage2" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="0" Grid.Column="3">
-            <Image Name="FilmImage3" Stretch="UniformToFill" />
+            <Image Name="FilmImage3" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="0" Grid.Column="4">
-            <Image Name="FilmImage4" Stretch="UniformToFill" />
+            <Image Name="FilmImage4" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="1" Grid.Column="0">
-            <Image Name="FilmImage5" Stretch="UniformToFill" />
+            <Image Name="FilmImage5" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="1" Grid.Column="1">
-            <Image Name="FilmImage6" Stretch="UniformToFill" />
+            <Image Name="FilmImage6" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="1" Grid.Column="2">
-            <Image Name="FilmImage7" Stretch="UniformToFill" />
+            <Image Name="FilmImage7" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="1" Grid.Column="3">
-            <Image Name="FilmImage8" Stretch="UniformToFill" />
+            <Image Name="FilmImage8" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <Border BorderThickness="5" CornerRadius="5" Margin="5" BorderBrush="#FFDDDDDD" Grid.Row="1" Grid.Column="4">
-            <Image Name="FilmImage9" Stretch="UniformToFill" />
+            <Image Name="FilmImage9" Stretch="UniformToFill" HorizontalAlignment="Center" VerticalAlignment="Center" />
         </Border>
         <!--</Grid>
         </Border>-->

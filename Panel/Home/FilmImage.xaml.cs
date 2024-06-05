@@ -24,4 +24,9 @@ namespace FilmRecommender.Panel.Home {
 
 
     }
+
+    public class FilmImageTop {
+        public string id { get; set; }
+        public System.Windows.Controls.Image img { get; set; }
+    }
 }
